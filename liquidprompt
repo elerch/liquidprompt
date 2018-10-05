@@ -1756,6 +1756,12 @@ _lp_set_prompt()
       LP_AWS_PROFILE=
     fi
 
+    if [[ "$LP_ENABLE_AWS_PROFILE,${AWS_VAULT-}" = 1,?* ]]; then
+      LP_AWS_PROFILE=" [${LP_COLOR_AWS_PROFILE}${AWS_VAULT##*/}${NO_COL}]"
+    else
+      LP_AWS_PROFILE=
+    fi
+
     LP_RUNTIME=$(_lp_sl "$(_lp_runtime)")
 
     # if change of working directory
